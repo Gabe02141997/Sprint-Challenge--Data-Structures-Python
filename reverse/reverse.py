@@ -39,4 +39,26 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
-        pass
+       if node is None:
+           return
+        ## check to see if the end is reached and make that the head. also configure it's prev pointer
+       if node.next_node is None:
+            self.head = node
+            node.next_node = prev
+            return
+       next_node = node.next_node
+       node.next_node = prev
+       self.reverse_list(next_node, node)
+
+n_1 = Node(5)
+n_2 = Node(8)
+n_3 = Node(13)
+n_1.next_node = n_2
+n_2.next_node = n_3
+sll = LinkedList()
+sll.head = n_1
+
+sll.reverse_list(n_3, n_2)
+
+# 1 -> 2 -> 3
+# 3 -> 2 ->1
